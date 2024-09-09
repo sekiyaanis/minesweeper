@@ -1,0 +1,28 @@
+#game-container {
+	width: 400px;
+	height: 400px;
+	border: 1px solid black;
+	display: grid;
+	grid-template-columns: repeat(10, 1fr);
+	grid-template-rows: repeat(10, 1fr);
+}
+
+.cell {
+	border: 1px solid gray;
+	font-size: 20px;
+	text-align: center;
+	cursor: pointer;
+}
+
+.mine {
+	background-color: red;
+}
+
+.revealed {
+	background-color: lightgray;
+}
+
+.flagged {
+	background-image: url('flag.png');
+	background-size: cover;
+}
