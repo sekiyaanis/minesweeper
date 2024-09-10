@@ -7,7 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()  # .envファイルを読み込む
 
 def get_weather(api_key, city):
-    base_url = "http://api.openweathermap.org/data/2.5/weather"
+    base_url = os.getenv("OPENWEATHERMAP_API_BASE_URL")
     params = {
         "q": city,
         "appid": api_key,
@@ -39,7 +39,7 @@ def get_weather(api_key, city):
 
 def get_current_location():
     try:
-        response = requests.get('https://ipapi.co/json/')
+        response = requests.get(os.getenv("IPAPI_CO_JSON"))
         data = response.json()
         return data['city']
     except Exception as e:
