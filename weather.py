@@ -1,9 +1,13 @@
+import os
 import requests
 import json
 from geopy.geocoders import Nominatim
+from dotenv import load_dotenv
+
+load_dotenv()  # .envファイルを読み込む
 
 def get_weather(api_key, city):
-    base_url = "http://api.openweathermap.org/data/2.5/weather"
+    base_url = os.getenv("OPENWEATHERMAP_API_BASE_URL")
     params = {
         "q": city,
         "appid": api_key,
@@ -35,15 +39,15 @@ def get_weather(api_key, city):
 
 def get_current_location():
     try:
-        response = requests.get('https://ipapi.co/json/')
+        response = requests.get(os.getenv("IPAPI_CO_JSON"))
         data = response.json()
         return data['city']
     except Exception as e:
         print(f"現在地の取得中にエラーが発生しました: {e}")
         return None
 
-# OpenWeatherMap APIキーを入力してください
-api_key = "cc95156ebbff393d571ecc5448ac784e"
+# .envファイルからAPIキーを取得
+api_key = os.getenv("OPENWEATHERMAP_API_KEY")
 
 city = get_current_location()
 if city:
